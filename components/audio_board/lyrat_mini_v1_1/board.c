@@ -142,9 +142,10 @@ esp_err_t audio_board_sdcard_init(esp_periph_set_handle_t set)
     };
     esp_periph_handle_t sdcard_handle = periph_sdcard_init(&sdcard_cfg);
     esp_err_t ret = esp_periph_start(set, sdcard_handle);
-    while (!periph_sdcard_is_mounted(sdcard_handle)) {
-        vTaskDelay(500 / portTICK_PERIOD_MS);
-    }
+	periph_sdcard_is_mounted(sdcard_handle);
+//    while (!periph_sdcard_is_mounted(sdcard_handle)) {
+//        vTaskDelay(500 / portTICK_PERIOD_MS);
+//    }
     return ret;
 }
 
