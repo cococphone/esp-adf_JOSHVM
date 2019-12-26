@@ -32,6 +32,14 @@ set(COMPONENT_SRCS
 )
 endif()
 
+if (CONFIG_JOSH_EVB_MEGA_ESP32_V1_0_BOARD)
+message(STATUS "Current board name is " CONFIG_JOSH_EVB_MEGA_ESP32_V1_0_BOARD)
+list(APPEND COMPONENT_ADD_INCLUDEDIRS ./lyrat_mini_v1_1)
+set(COMPONENT_SRCS
+./lyrat_mini_v1_1/board.c
+./lyrat_mini_v1_1/board_pins_config.c
+)
+endif()
 
 if (CONFIG_ESP_LYRATD_MSC_V2_1_BOARD)
 message(STATUS "Current board name is " CONFIG_ESP_LYRATD_MSC_V2_1_BOARD)
