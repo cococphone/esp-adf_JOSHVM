@@ -355,7 +355,12 @@ audio_element_handle_t i2s_stream_init(i2s_stream_cfg_t *config)
     info.bits = config->i2s_config.bits_per_sample;
 
     audio_element_setinfo(el, &info);
-    i2s_driver_install(i2s->config.i2s_port, &i2s->config.i2s_config, 0, NULL);
+	//modify by li begin 2019/11/13
+    if(i2s_driver_install(i2s->config.i2s_port, &i2s->config.i2s_config, 0, NULL) != ESP_OK) {
+		audio_free(i2s);
+        return NULL;
+	}
+	//modify by li end   2019/11/13
 
     if ((config->i2s_config.mode & I2S_MODE_DAC_BUILT_IN) != 0) {
         i2s_set_dac_mode(I2S_DAC_CHANNEL_BOTH_EN);
